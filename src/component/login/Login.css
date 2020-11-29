@@ -1,0 +1,14 @@
+
+.login-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ababab69;
+    border-radius: 5px;
+    width: 450px;
+    font-size: 12px;
+}
+.login-form .form-control{
+    font-size: 15px;
+}

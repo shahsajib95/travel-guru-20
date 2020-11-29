@@ -1,0 +1,24 @@
+.navbar .form-control, .nav-link, .btn{
+    font-size: 13px!important;
+}
+.navblack .nav-link{
+    color: #ffff!important;
+}
+.banner{
+    background-image: url('../../../img/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 750px;
+}
+.navbar .form-control{
+    opacity: 0.6;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.342);
+    border: 1px solid white!important;
+}
+.navbar .form-control::placeholder {
+    color: white;
+  }
+.btn{
+    font-weight: 500;
+}

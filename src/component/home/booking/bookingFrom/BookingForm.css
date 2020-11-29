@@ -1,0 +1,11 @@
+.booking-form{
+    background-color: white;
+    border-radius: 5px;
+    color: #818181;
+    font-size: 13px;
+    width: 430px;
+}
+
+.form-control{
+    border-radius: 0;
+}

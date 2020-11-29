@@ -1,0 +1,21 @@
+.slider-image{
+    width: 30%;
+    border-radius: 20px;
+    display: inline;
+    cursor: pointer;
+    border: 3px solid transparent;
+    -webkit-box-shadow: 6px 10px 57px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 10px 57px -15px rgba(0,0,0,0.75);
+    box-shadow: 6px 10px 57px -15px rgba(0,0,0,0.75);
+}
+.slider-image:hover{
+    border: 3px solid #F9A51A;
+}
+.InfiniteCarouselArrowPrevIcon, .InfiniteCarouselArrowNextIcon{
+    position: absolute;
+    top: 250px;
+}
+
+.InfiniteCarouselArrowNextIcon{
+    left: -250px;
+}
