@@ -7,7 +7,13 @@ import { UserData } from '../../../App';
 const Navbar = () => {
 
     const [loggedIn, setLoggedIn] = useContext(UserData)
-
+    const logOut = () =>{
+        setLoggedIn()
+        localStorage.removeItem('rememberMe')
+        localStorage.removeItem('userInfo')
+        localStorage.removeItem('place')
+        localStorage.removeItem('order')
+    }
     return (
         <nav className="navbar navblack navbar-expand-lg navbar-light text-warning container p-3">
             <Link to="/" className="w-25"><img className="w-50" src={logo} alt="" /></Link>
@@ -33,7 +39,7 @@ const Navbar = () => {
                         {loggedIn.email && <span className="nav-link ml-4">{loggedIn.name}</span>}
                     </li>
                 </ul>
-                {loggedIn.email ? <a href="/" className="nav-link ml-4"><button className="btn btn-warning" onClick={() => setLoggedIn()}>SignOut</button></a>
+                {loggedIn.email ? <a href="/" className="nav-link ml-4"><button className="btn btn-warning" onClick={() => logOut()}>SignOut</button></a>
                     : <Link to="/login" className="nav-link ml-4"><button className="btn btn-warning">Login</button></Link>}
 
             </div>

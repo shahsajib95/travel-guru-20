@@ -16,6 +16,10 @@ const Login = () => {
         error: '',
         success: false
     })
+    const handleCheck = () => {
+        localStorage.setItem('rememberMe', JSON.stringify('isCheked'))
+      }
+    
     const [newUser, setNewUser] = useState(false)
     const [pass, setPass] = useState(true)
     let history = useHistory();
@@ -69,6 +73,7 @@ const Login = () => {
                         name: user.firstName,
                     }
                     setLoggedIn(userInfo)
+                    localStorage.setItem('userInfo', JSON.stringify(userInfo))
                     if (res.email) { history.replace(from) }
                 })
         }
@@ -84,6 +89,7 @@ const Login = () => {
                         name: displayName,
                     }
                     setLoggedIn(userInfo)
+                    localStorage.setItem('userInfo', JSON.stringify(userInfo))
                     if (res.email) { history.replace(from) }
                 })
 
@@ -114,7 +120,7 @@ const Login = () => {
                         <div className="d-flex justify-content-between mt-2">
                             <div>
                                 <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                                    <input  onChange={handleCheck} className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
                                     <label className="form-check-label" for="defaultCheck1">
                                         Remember Me
                                     </label>

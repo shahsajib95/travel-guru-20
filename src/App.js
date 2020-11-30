@@ -18,8 +18,14 @@ function App() {
   const [selectedPlace, setSelectedPlace] = useState([])
   const [confirmOrder, setConfirmOrder] = useState(JSON.parse(localStorage.getItem('order')))
   const [loggedIn, setLoggedIn] = useState([])
+  console.log(loggedIn)
+
+
   useEffect(() => {
     setPlaceInfo(data)
+    if (localStorage.getItem('rememberMe')) {
+      setLoggedIn(JSON.parse(localStorage.getItem('userInfo')))
+    }
   }, [])
 
   const handleClick = (place) => {
