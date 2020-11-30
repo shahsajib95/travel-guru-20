@@ -69,12 +69,14 @@ const Login = () => {
                         name: user.firstName,
                     }
                     setLoggedIn(userInfo)
-                    history.replace(from)
+                    if (res.email) { history.replace(from) }
                 })
         }
         if (!newUser && user.email && user.password) {
+            console.log(user)
             signInWithEmail(user.email, user.password)
                 .then(res => {
+                    console.log(res)
                     setUser(res)
                     const { email, displayName } = res;
                     const userInfo = {
@@ -82,13 +84,13 @@ const Login = () => {
                         name: displayName,
                     }
                     setLoggedIn(userInfo)
-                    history.replace(from)
+                    if (res.email) { history.replace(from) }
                 })
 
         }
     }
     if (user.error) {
-        setTimeout(() => setUser(user.error), 3000)
+        setTimeout(() => setUser(user.error), 5000)
     }
 
     return (
@@ -100,7 +102,7 @@ const Login = () => {
                 < div >
                     <h4><b>Login</b></h4>
                     {user.success && <p className="text-success">User Created Successfully</p>}
-                    {user.error && <p className="text-danger">{user.error}</p>}
+                    {user.error && <p className="text-danger"><b>{user.error}</b></p>}
                     {!pass && <p className="text-danger mt-2">*Use uppercase, lowercase, number(1-9) and special character combination</p>}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         < input name="email" onChange={handleBlur} placeholder="Email" className="form-control mt-2" ref={register({ required: true })} />
@@ -133,7 +135,7 @@ const Login = () => {
                 <div>
                     <h4><b>Create an Account</b></h4>
                     {user.success && <p className="text-success">User Created Successfully</p>}
-                    {!user.success && <p className="text-danger">{user.error}</p>}
+                    {user.error && <p className="text-danger"><b>{user.error}</b></p>}
                     {!pass && <p className="text-danger">*Use uppercase, lowercase, number(1-9) and special character combination<br></br>*Password and confirm password should be same</p>}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         < input name="firstName" onChange={handleBlur} placeholder="First Name" className="form-control mt-2" ref={register({ required: true })} />

@@ -31,7 +31,7 @@ const NavbarBlack = () => {
                         {loggedIn.email && <span className="nav-link ml-4">{loggedIn.name}</span>}
                     </li>
                 </ul>
-                {loggedIn.email ? <Link to="/login" className="nav-link ml-4"><button className="btn btn-warning" onClick={()=>setLoggedIn()}>SignOut</button></Link>
+                {loggedIn.email ? <a href="/" className="nav-link ml-4"><button className="btn btn-warning" onClick={()=>setLoggedIn()}>SignOut</button></a>
                 : <Link to="/login" className="nav-link ml-4"><button className="btn btn-warning">Login</button></Link>}
 
             </div>

@@ -9,3 +9,7 @@
 .form-control{
     border-radius: 0;
 }
+.booking-form .form-control{
+    font-size: 15px;
+    font-weight: 800;
+}

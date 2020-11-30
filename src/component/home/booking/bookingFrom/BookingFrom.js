@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './BookingForm.css'
 import { useForm } from "react-hook-form";
 import 'date-fns';
@@ -6,17 +6,27 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { Link } from 'react-router-dom';
+import { OrderData } from '../../../../App';
 
 const BookingFrom = () => {
     const placeData = JSON.parse(localStorage.getItem('place'))
     const { register, handleSubmit, errors } = useForm();
     const [order, setOrder] = useState(null)
-    const [fromDate] = useState(new Date())
-    const [toDate] = useState(new Date())
+    const [confirmOrder, setConfirmOrder] = useContext(OrderData)
+    const [fromDate, setfromDate] = useState(new Date())
+    const [toDate, setToDate] = useState(new Date())
     const from = fromDate.toString()
     const to = toDate.toString()
-    const onSubmit = data => console.log({ ...data, from, to });
-    const handleDateChange = (e) => {
+
+    const onSubmit = data => {
+        setConfirmOrder({ ...data, from, to })
+        localStorage.setItem('order', JSON.stringify({ ...data, from, to }))
+    };
+    const handleFromDateChange = (e) => {
+        setfromDate(e)
+    }
+    const handleToDateChange = (e) => {
+        setToDate(e)
         setOrder(e)
     }
     return (
@@ -29,7 +39,7 @@ const BookingFrom = () => {
 
                 <label className="mt-2">Destination</label>
                 <input name="Destination" className="form-control" defaultValue={placeData.name} placeholder="Destination" ref={register({ required: true })} />
-                {errors.Destination && <span  className="text-warning">Give your Destination</span>}
+                {errors.Destination && <span className="text-warning">Give your Destination</span>}
 
                 <div className="row">
                     <div className="col">
@@ -41,7 +51,7 @@ const BookingFrom = () => {
                                     label="From"
                                     format="MM/dd/yyyy"
                                     value={fromDate}
-                                    onChange={handleDateChange}
+                                    onChange={handleFromDateChange}
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
@@ -59,7 +69,7 @@ const BookingFrom = () => {
                                     label="To"
                                     format="MM/dd/yyyy"
                                     value={toDate}
-                                    onChange={handleDateChange}
+                                    onChange={handleToDateChange}
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
@@ -69,8 +79,11 @@ const BookingFrom = () => {
                         {errors.To && <span>This field is required</span>}
                     </div>
                 </div>
-                {order ? <Link to="/"><button className="mt-4 btn btn-warning form-control" type="submit">Start Booking</button></Link>:
-                <button disabled className="mt-4 btn btn-warning form-control" type="submit">Start Booking</button>}
+                {order ? <Link to="/CompleteBooking">
+                    <button className="mt-4 btn btn-warning form-control" type="submit">Start Booking</button>
+                </Link>
+                    :
+                    <button disabled className="mt-4 btn btn-warning form-control" type="submit">Start Booking</button>} 
             </form>
 
         </div >
