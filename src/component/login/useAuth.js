@@ -27,6 +27,7 @@ export const signUpwithPassword = (name, email, password) => {
             return newUser;
 
         });
+
 }
 
 export const signInWithEmail = (email, password) => {
@@ -60,4 +61,11 @@ const userName = (name) => {
         .catch(err => {
             console.log(err)
         })
-} 
+}
+export const idToken = () =>{
+    return firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+        localStorage.setItem('token', idToken)
+      }).catch(function(error) {
+        // Handle error
+      });
+}

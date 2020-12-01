@@ -1,9 +1,9 @@
 
 .login-form{
+    margin-top: 50px;
     position: absolute;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%);
     border: 1px solid #ababab69;
     border-radius: 5px;
     width: 450px;
@@ -11,4 +11,10 @@
 }
 .login-form .form-control{
     font-size: 15px;
+}
+
+@media only screen and (max-width: 400px){
+    .login-form{
+        width: 250px;
+    }
 }

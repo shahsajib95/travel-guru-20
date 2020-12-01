@@ -22,3 +22,16 @@
 .btn{
     font-weight: 500;
 }
+@media only screen and (max-width: 991px){
+    .navblack .nav-link {
+        margin-left: 0!important;
+    }
+    .nav-item {
+        margin-left: 0!important;
+    }
+}
+@media only screen and (max-width: 280px){
+    .navbar-brand{
+        width: 50%!important;
+    }
+}

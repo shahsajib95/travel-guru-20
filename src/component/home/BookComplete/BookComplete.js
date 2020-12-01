@@ -2,6 +2,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
 import { OrderData } from '../../../App';
+import './BookComplete.css'
 
 const BookComplete = () => {
 
@@ -9,7 +10,7 @@ const BookComplete = () => {
     const placeData = JSON.parse(localStorage.getItem('place'))
 
     return (
-        <div className="container my-5">
+        <div className="container my-5 book-complete">
             <div className="row">
                 <div className="col-md-6">
                     {placeData.hotelInfo.stayed}<br></br>
@@ -79,7 +80,7 @@ const BookComplete = () => {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <img src={require(`../../../img/map.png`).default} alt="" />
+                    <img className="w-100" src={require(`../../../img/map.png`).default} alt="" />
                 </div>
             </div>
         </div>

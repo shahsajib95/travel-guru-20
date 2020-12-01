@@ -24,14 +24,14 @@ const Banner = ({handleClick}) => {
                         <div className="text-white banner-text">
                             <h1>{displayPlace.name}</h1>
                             <p>{displayPlace.description}</p>
-                            <Link to="/booking"><button onClick={()=>handleClick(displayPlace)} className="w-50 btn btn-warning">Booking <FontAwesomeIcon className="ml-2" icon={faLongArrowAltRight} /></button></Link>
+                            <Link to="/booking"><button onClick={()=>handleClick(displayPlace)} className="btn btn-warning">Booking <FontAwesomeIcon className="ml-2" icon={faLongArrowAltRight} /></button></Link>
                         </div>}
 
                     {display &&
                         <div className="text-white banner-text">
                             <h1>{hoverPlace.name}</h1>
                             <p>{hoverPlace.description}</p>
-                            <Link to="/booking"><button onClick={()=>handleClick(hoverPlace)} className="w-50 btn btn-warning">Booking <FontAwesomeIcon className="ml-2" icon={faLongArrowAltRight} /></button></Link>
+                            <Link to="/booking"><button onClick={()=>handleClick(hoverPlace)} className="btn btn-warning">Booking <FontAwesomeIcon className="ml-2" icon={faLongArrowAltRight} /></button></Link>
                         </div>}
                 </div>
                 <div className="col-md-7">

@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     setPlaceInfo(data)
-    if (localStorage.getItem('rememberMe')) {
+    if(localStorage.getItem('rememberMe') && localStorage.getItem('userInfo') && (localStorage.getItem('userInfo'))){
       setLoggedIn(JSON.parse(localStorage.getItem('userInfo')))
     }
   }, [])

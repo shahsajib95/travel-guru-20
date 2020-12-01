@@ -13,10 +13,11 @@ const Navbar = () => {
         localStorage.removeItem('userInfo')
         localStorage.removeItem('place')
         localStorage.removeItem('order')
+        localStorage.removeItem('token')
     }
     return (
         <nav className="navbar navblack navbar-expand-lg navbar-light text-warning container p-3">
-            <Link to="/" className="w-25"><img className="w-50" src={logo} alt="" /></Link>
+            <Link to="/" className="navbar-brand w-25"><img className="w-50" src={logo} alt="" /></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -39,8 +40,8 @@ const Navbar = () => {
                         {loggedIn.email && <span className="nav-link ml-4">{loggedIn.name}</span>}
                     </li>
                 </ul>
-                {loggedIn.email ? <a href="/" className="nav-link ml-4"><button className="btn btn-warning" onClick={() => logOut()}>SignOut</button></a>
-                    : <Link to="/login" className="nav-link ml-4"><button className="btn btn-warning">Login</button></Link>}
+                {loggedIn.email ? <a href="/" className=" nav-item ml-4"><button className="btn btn-warning" onClick={() => logOut()}>SignOut</button></a>
+                    : <Link to="/login" className=" nav-item ml-4"><button className="btn btn-warning">Login</button></Link>}
 
             </div>
         </nav>

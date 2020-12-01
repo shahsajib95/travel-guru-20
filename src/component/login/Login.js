@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import './Login.css';
 import { useForm } from "react-hook-form";
 import { UserData } from '../../App';
-import { useHistory, useLocation } from 'react-router-dom';
-import { signInWithEmail, signUpwithPassword } from './useAuth';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { idToken, signInWithEmail, signUpwithPassword } from './useAuth';
 
 const Login = () => {
     const { register, handleSubmit, watch, errors } = useForm();
@@ -16,12 +16,18 @@ const Login = () => {
         error: '',
         success: false
     })
-    const handleCheck = () => {
-        localStorage.setItem('rememberMe', JSON.stringify('isCheked'))
-      }
-    
+    const handleCheck = (e) => {
+        if (e.target.checked) {
+            setChecked(true)
+            localStorage.setItem('rememberMe', JSON.stringify('isCheked'))
+        } else {
+            localStorage.removeItem('rememberMe')
+        }
+    }
+
     const [newUser, setNewUser] = useState(false)
     const [pass, setPass] = useState(true)
+    const [checked, setChecked] = useState(false)
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
@@ -65,15 +71,15 @@ const Login = () => {
         if (newUser && user.firstName && user.email && (user.password === user.confirmPassword)) {
             signUpwithPassword(user.firstName, user.email, user.password)
                 .then(res => {
-                    console.log(res)
                     setUser(res)
+                    checked && idToken()
                     const { email } = res;
                     const userInfo = {
                         email: email,
                         name: user.firstName,
                     }
                     setLoggedIn(userInfo)
-                    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+                    checked && localStorage.setItem('userInfo', JSON.stringify(userInfo))
                     if (res.email) { history.replace(from) }
                 })
         }
@@ -81,15 +87,15 @@ const Login = () => {
             console.log(user)
             signInWithEmail(user.email, user.password)
                 .then(res => {
-                    console.log(res)
                     setUser(res)
+                    checked && idToken()
                     const { email, displayName } = res;
                     const userInfo = {
                         email: email,
                         name: displayName,
                     }
                     setLoggedIn(userInfo)
-                    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+                    checked && localStorage.setItem('userInfo', JSON.stringify(userInfo))
                     if (res.email) { history.replace(from) }
                 })
 
@@ -97,6 +103,7 @@ const Login = () => {
     }
     if (user.error) {
         setTimeout(() => setUser(user.error), 5000)
+        setTimeout(() => window.location ="/login", 5000)
     }
 
     return (
@@ -120,14 +127,11 @@ const Login = () => {
                         <div className="d-flex justify-content-between mt-2">
                             <div>
                                 <div className="form-check">
-                                    <input  onChange={handleCheck} className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                                    <label className="form-check-label" for="defaultCheck1">
+                                    <input name="checkBox" defaultChecked={() => setChecked(true)} onChange={handleCheck} className="form-check-input" type="checkbox" />
+                                    <label className="form-check-label">
                                         Remember Me
                                     </label>
                                 </div>
-                            </div>
-                            <div>
-                                <span className="text-warning"><u>Forgot Password</u></span>
                             </div>
                         </div>
                         <p className="text-center mt-2">Don't have an account?<span className="text-warning" style={{ cursor: 'pointer' }} onClick={() => setNewUser(true)}><u>Create an Account</u></span></p>

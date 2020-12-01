@@ -1,3 +1,17 @@
 .nav-link {
     color: black!important;
 }
+
+@media only screen and (max-width: 991px){
+    .nav-link {
+        margin-left: 0!important;
+    }
+    .nav-item {
+        margin-left: 0!important;
+    }
+}
+@media only screen and (max-width: 280px){
+    .navbar-brand{
+        width: 50%!important;
+    }
+}

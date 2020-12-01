@@ -2,3 +2,16 @@
     font-family: 'Bebas Neue', cursive;
     font-size: 4rem;
 }
+
+@media only screen and (max-width: 280px){
+    .banner-text h1{
+        font-size: 3rem!important;
+    }
+    .banner-text p{
+        font-size: 12px;
+    }
+    .slider-image{
+        border-radius: 10px;
+        margin: 15px 0px 0px 3px!important;
+    }
+}
